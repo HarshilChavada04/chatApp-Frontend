@@ -1,1 +1,101 @@
-/* app global css */
+/* global.css */
+:root {
+    --q-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0);
+    --scroll-style: rgb(123, 123, 123);
+}
+  
+.text-theme {
+    color: black;
+}
+
+.body--dark {
+    background-color: #353648 !important;
+}
+
+.body--dark .text-theme {
+    color: #f0f0f0;
+}
+
+.header-class {
+    background: var(--q-text-2);
+    border-radius: 8px !important;
+    box-shadow: var(--q-box-shadow);
+}
+
+.body--dark .header-class{
+    background-color: #404256;
+}
+
+.label-text{
+    color: grey ;
+}
+
+.q-field--dark .q-field__control:before {
+    border-color: none;
+}
+
+.q-field--outlined .q-field__control:before {
+    border: none; 
+}
+
+.bar-bg-color{
+    background-color: #F6FAFD;
+    box-shadow: var(--q-box-shadow);
+}
+
+.body--dark .bar-bg-color{
+    background-color:  #353543;
+}
+
+.border-radius-6{
+    border-radius: 6px;
+}
+
+.border-radius-10{
+    border-radius: 10px;
+}
+
+.text-subtitle-custom{
+    font-size: 11px
+}
+/*----------------------scroll-bar styling------------------*/
+
+/* General scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track{
+  box-shadow: inset 0 0 5px 1px var(--scroll-style);
+}
+
+::-webkit-scrollbar-thumb{
+  background: var(--scroll-style);
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background: var(--scroll-style);
+}
+
+/* Specific styling for smooth-scroll and scroll class */
+.med-smooth-scroll::-webkit-scrollbar,
+.scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 2px;
+}
+
+.med-smooth-scroll::-webkit-scrollbar-track,
+.scroll::-webkit-scrollbar-track {
+  border-radius: 12px;
+}
+
+.med-smooth-scroll::-webkit-scrollbar-thumb,
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+}
+
+.med-smooth-scroll::-webkit-scrollbar-thumb:hover,
+.scroll::-webkit-scrollbar-thumb:hover {
+  border-radius: 12px;
+}
