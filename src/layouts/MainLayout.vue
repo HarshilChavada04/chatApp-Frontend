@@ -11,9 +11,3 @@
     </q-page-container>
   </q-layout>
 </template>
-
-<style>
-body{
-
-}
-</style>

@@ -18,7 +18,7 @@
         />
       </div>
     </div>
-    <div class="row q-my-lg">
+    <div class="row q-my-lg" >
       <div class="col-3">
         <div>
           <q-input 
@@ -32,8 +32,8 @@
             </template>
           </q-input>
         </div>
-        <div class="q-mt-lg header-class q-py-md overflow-auto med-smooth-scroll">
-          <q-list>
+        <div class="q-mt-lg header-class q-py-md">
+          <q-list class="overflow-auto med-smooth-scroll" style="height: calc(100vh - 260px);">
             <div v-for="(data) in contactData" :key="data.id">
               <q-item clickable v-ripple class="q-mx-md q-my-sm custom-item" @click="intClickedIndex = data.id" :active="intClickedIndex == data.id" active-class="active-item-class">
                 <q-item-section avatar>
@@ -63,10 +63,10 @@
         </div>
       </div>
       <div class="col q-ml-lg">
-        <div class="header-class">
+        <div class="header-class bg-img-chat">
           <q-bar dense class="bar-bg-color q-pa-md" style="height: fit-content;">
             <img :src="`https://cdn.quasar.dev/img/avatar2.jpg`" width="35px" height="35px" style="border-radius: 50%;">
-            <div>
+            <div class="ellipsis">
               <span class="text-h6 text-bold q-ml-sm">Prins Kamariya</span>
             </div>
             <q-space />
@@ -85,11 +85,12 @@
                 dense
                 size="13px"
                 no-caps
+                @click="blnShowProfileCard = true"
                 class="profile-btn border-radius-6 q-px-md q-py-xs label-text"
               />
             </div>
           </q-bar>
-          <div class="q-pt-md q-px-md">
+          <div class="q-pt-md q-px-md overflow-auto med-smooth-scroll chat-height">
             <div v-for="(data, index) in arrMessTempData" :key="index">
               <chat-message :intUserId="data.senderId == tempLoginUserId  ? 0 : 1" :strMessage="data.content" :strMessageSentTime="getDisplayTime(index)"></chat-message>
             </div>
@@ -113,6 +114,9 @@
           </q-btn>
         </div>
       </div>
+      <div v-if="blnShowProfileCard" class="q-ml-lg">
+        <profile-card v-model:dialog="blnShowProfileCard" />
+      </div>
     </div>
   </div>
 </template>
@@ -121,6 +125,7 @@
 <script setup>
   import { ref, watch, onMounted } from 'vue';
   import chatMessage from '../components/ChatMessage.vue/';
+  import ProfileCard from 'src/components/ProfileCard.vue';
   import { useQuasar } from 'quasar';
 
   const $q = useQuasar();
@@ -195,6 +200,7 @@
   const currentTime = ref('');
   const tempLoginUserId = ref(1);
   const intClickedIndex = ref(null);
+  const blnShowProfileCard = ref(false);
 
   function updateTime(){
     const now = new Date()
@@ -270,5 +276,12 @@
   background-color: #5b66cb;
   color: white;
   font-size: 12px;
+}
+.bg-img-chat{
+  background-image: url('../assets/bg-img-chat.png');
+  background-color: transparent;
+}
+.chat-height{
+  height: calc(100vh - 280px);
 }
 </style>
