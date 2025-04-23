@@ -18,7 +18,7 @@
         />
       </div>
     </div>
-    <div class="row q-my-lg" >
+    <div class="col-12 row q-my-lg" >
       <div class="col-3">
         <div>
           <q-input 
@@ -235,16 +235,14 @@
     return currentTime !== nextTime ? currentTime : '';
   }
 
-
-    
   onMounted(() => {
     updateTime();
     setInterval(updateTime, 1000);
-  })
+  });
 
   watch(isDark, (val) => {
     $q.dark.set(val);
-  })
+  }, {immediate: true, deep: true});
 </script>
 <style>
 .custom-item:hover{
@@ -284,4 +282,60 @@
 .chat-height{
   height: calc(100vh - 280px);
 }
+.q-field--dark .q-field__control:before {
+    border-color: none;
+}
+.q-field--outlined .q-field__control:before {
+    border: none; 
+}
 </style>
+
+<!-- <template>
+  <div>
+    <div v-for="msg in messages" :key="msg.createdAt">
+      <p><strong>{{ msg.senderId === myId ? 'You' : 'Them' }}:</strong> {{ msg.content }}</p>
+    </div>
+
+    <q-input filled v-model="newMessage" @keyup.enter="sendMessage" label="Type a message" />
+  </div>
+</template>
+
+<script setup>
+import { onMounted, onBeforeUnmount, ref, getCurrentInstance } from 'vue';
+
+const { proxy } = getCurrentInstance(); // to use this.$socket
+
+const myId = 1; // Normally from login info or token
+const receiverId = 2;
+const receiverRoom = `${myId}_${receiverId}`;
+
+const newMessage = ref('');
+const messages = ref([]);
+
+onMounted(() => {
+  proxy.$socket.emit('joinRoom', receiverRoom);
+
+  proxy.$socket.on('receiveMessage', (data) => {
+    console.log(data);
+    messages.value.push(data);
+  });
+});
+
+onBeforeUnmount(() => {
+  proxy.$socket.off('receiveMessage');
+});
+
+function sendMessage() {
+  const msg = {
+    senderId: myId,
+    receiverId,
+    receiverRoom,
+    content: newMessage.value,
+    createdAt: new Date(),
+  };
+
+  proxy.$socket.emit('sendMessage', msg);
+  messages.value.push(msg);
+  newMessage.value = '';
+}
+</script> -->

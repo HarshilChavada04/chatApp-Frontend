@@ -30,14 +30,6 @@
     color: grey ;
 }
 
-.q-field--dark .q-field__control:before {
-    border-color: none;
-}
-
-.q-field--outlined .q-field__control:before {
-    border: none; 
-}
-
 .bar-bg-color{
     background-color: #F6FAFD;
     box-shadow: var(--q-box-shadow);
